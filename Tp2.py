@@ -8,7 +8,8 @@ max = 100
 reponse = 0 #La réponse
 essaies = 0 #Le nombre d'essaies
 
-def initiate(): #fonction qui initialize le jeu
+#fonction qui initialize le jeu
+def initiate():
     global min,max
     min = int(input("Choisizer une borne minimale"))
     max = int(input("Choisizer une borne maximale"))
@@ -17,24 +18,29 @@ def initiate(): #fonction qui initialize le jeu
     reponse = random.randint(min, max)  # Choisi un nombre entre le min et le max
     print("J'ai choisi un nombre entre",min,max,".")
 
-def guessfunc(): #Fonction qui permet au joueur de deviner
+#Fonction qui permet au joueur de deviner
+def guessfunc():
     guess = input("Essayer de deviner ce nomber:")
     guess = int(guess)
-    #globalise la variable essaies
+  
 
-    if guess > reponse: #Si la réponse est plus grande que la réponse:
+    #Si la réponse est plus grande que la réponse:
+    if guess > reponse:
         print("Votre reponse est plus grande que le nombre mysterieux !!")
         return("Incorrect")
 
-    elif guess < reponse: #Si la réponse est plus petit que la réponse:
+    #Si la réponse est plus petit que la réponse:
+    elif guess < reponse:
         print("Votre reponse est plus petit que le nombre mysterieux ")
         return("Incorrect")
 
-    elif guess == reponse: #Si la réponse est egale que la réponse:
+    #Si la réponse est egale que la réponse:
+    elif guess == reponse:
         print("VOUS AVEZ EU LA BONNE REPONSE YOUPI !!!!")
         return("Correct")
 
-def restart(): #Re-initialze le code is le joueur veux
+#Re-initialise le code is le joueur veux
+def restart():
     retry = input("Voulez vous re-jouez ???????? (O/N)")
     return retry
 
@@ -42,17 +48,23 @@ initiate()
 
 playing = True
 
+#Game loop
 while playing:
     guess = guessfunc()
+
+    #A chaque guess, on ajoute +1 a la variable essaies
     essaies += 1
 
+    #Si le joueur devine correctement, on lui demande si il veut re-jouez. Sinon, la boucle recommence 
     if guess == "Correct":
         print("Cela vous a prit:", essaies, "essaies")
         rstart = restart()
+        #Si le joueur veut re-jouez, on réinitialise le jeu et on met la variable essaies à 0
         if rstart == "O" or rstart == "o":
             essaies = 0
             initiate()
         else:
             print("Au revoir !!")
+            #Tue la boucle
             playing = False
 
