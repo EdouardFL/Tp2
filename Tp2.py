@@ -5,8 +5,8 @@ import random
 min = 0
 max = 100
 
-reponse = 0 #La réponse
-essaies = 0 #Le nombre d'essaies
+reponse = 0
+essaies = 0
 
 #fonction qui initialize le jeu
 def initiate():
